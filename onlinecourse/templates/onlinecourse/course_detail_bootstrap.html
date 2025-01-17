@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    <!-- Navigation bar -->
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -24,7 +23,9 @@
                     <form id="questionform" action="{% url 'onlinecourse:submit' course.id%}" method="POST">
                         {% for question in course.question_set.all %}
                         <div class="card mt-1">
-                            <div class="card-header"><h5>{{ question.content }}</h5></div>
+                            <div class="card-header">
+                                <h5>{{ question.content }}</h5>
+                            </div>
                             {% csrf_token %}
                             <div class="form-group">
                                 {% for choice in question.choice_set.all %}
@@ -38,16 +39,16 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        <!-- Question UI components will go here -->
                         {% endfor %}
-                        </form>
+                        <input class="btn btn-success btn-block" type="submit" value="Submit">
+                    </form>
                 </div>
                 {% endif %}
                 <li>
                     <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
                     <a class="btn btn-link" href="{% url 'onlinecourse:logout' %}">Logout</a>
                 </li>
-                {% else %}
+                {% else %} <!--else error -->
                 <li>
                     <form class="form-inline" action="{% url 'onlinecourse:login' %}" method="post">
                         {% csrf_token %}

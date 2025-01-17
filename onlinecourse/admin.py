@@ -4,22 +4,28 @@ from .models import Course, Lesson, Instructor, Learner, Question, Choice, Submi
 class LessonInline(admin.StackedInline):
     model = Lesson
     extra = 5
+
 class ChoiceInLine(admin.StackedInline):
     model = Choice
     extra = 2
+
 class QuestionInLine(admin.StackedInline):
     model = Question
     extra = 2
+
 class CourseAdmin(admin.ModelAdmin):
     inlines = [LessonInline]
     list_display = ('name', 'pub_date')
     list_filter = ['pub_date']
     search_fields = ['name', 'description']
+
 class LessonAdmin(admin.ModelAdmin):
     list_display = ['title']
+
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInLine]
     list_display = ['content']
+
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson, LessonAdmin)

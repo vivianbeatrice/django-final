@@ -95,7 +95,6 @@ class Enrollment(models.Model):
     rating = models.FloatField(default=5.0)
 
 
-
 class Question(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     content = models.CharField(max_length=200)
